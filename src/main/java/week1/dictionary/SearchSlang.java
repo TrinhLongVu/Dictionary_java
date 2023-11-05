@@ -31,9 +31,8 @@ public class SearchSlang extends JPanel {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
             if ("Input".equals(command)) {
-                System.out.print(command);
                 String textValue = textInput.getText();
-                System.out.print("akaajajaja : " + textValue);
+                text.setText(textValue);
             }
         }
     }

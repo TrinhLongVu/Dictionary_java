@@ -13,7 +13,6 @@ import javax.swing.*;
 public class Menu {
 
     private JFrame mainFrame;
-    private JPanel controlPanel;
     private JTabbedPane tabby;
 
     public Menu() {
@@ -25,13 +24,13 @@ public class Menu {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(360, 400);
 
-        controlPanel = new JPanel();
-
+        
         tabby = new JTabbedPane();
 
-        tabby.addTab("Main", controlPanel);
         tabby.addTab("Slang", new SearchSlang());
         tabby.addTab("definition", new DefineSearch());
+        tabby.addTab("CRUD", new CRUD());        
+
 
         mainFrame.add(tabby);
         mainFrame.setVisible(true);
