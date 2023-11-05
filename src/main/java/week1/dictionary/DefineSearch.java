@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author Admin
  */
-public class SearchSlang extends JPanel {
+public class DefineSearch extends JPanel {
     private JPanel HeaderUI;
     private JPanel Content;
     private JTextPane text;
@@ -23,7 +23,7 @@ public class SearchSlang extends JPanel {
     private JTextField textInput;
     private JLabel label;
     
-    SearchSlang() {
+    DefineSearch() {
         createAndShowGUI();
     }
 

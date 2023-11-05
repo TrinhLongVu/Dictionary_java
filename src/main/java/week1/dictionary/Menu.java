@@ -23,16 +23,15 @@ public class Menu {
     private void createAndShowGUI() {
         mainFrame = new JFrame("CardLayoutDemo");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(400, 400);
+        mainFrame.setSize(360, 400);
 
         controlPanel = new JPanel();
 
         tabby = new JTabbedPane();
-        
-        SearchSlang slang = new SearchSlang();
 
         tabby.addTab("Main", controlPanel);
-        tabby.addTab("Search", slang);
+        tabby.addTab("Slang", new SearchSlang());
+        tabby.addTab("definition", new DefineSearch());
 
         mainFrame.add(tabby);
         mainFrame.setVisible(true);
