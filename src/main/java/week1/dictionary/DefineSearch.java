@@ -65,8 +65,7 @@ public class DefineSearch extends JPanel {
         Content.add(text);
 
         add(HeaderUI, BorderLayout.NORTH);
-        add(Content, BorderLayout.CENTER);        
-        add(new History(), BorderLayout.SOUTH);  
+        add(Content, BorderLayout.CENTER);   
   
     }
 }

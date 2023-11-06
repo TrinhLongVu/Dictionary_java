@@ -4,6 +4,9 @@
  */
 package week1.dictionary;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.*;
 
 /**
@@ -15,22 +18,22 @@ public class Menu {
     private JFrame mainFrame;
     private JTabbedPane tabby;
 
-    public Menu() {
+    public Menu() throws IOException {
         createAndShowGUI();
     }
 
-    private void createAndShowGUI() {
+    private void createAndShowGUI() throws IOException {
         mainFrame = new JFrame("CardLayoutDemo");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(360, 400);
+        HashMap<String, ArrayList<String>> Dicts = new HashMap<>();
+        Dicts = new Dictionary().getDict();
 
-        
         tabby = new JTabbedPane();
 
-        tabby.addTab("Slang", new SearchSlang());
+        tabby.addTab("Slang", new SearchSlang(Dicts));
         tabby.addTab("definition", new DefineSearch());
-        tabby.addTab("CRUD", new CRUD());        
-
+        tabby.addTab("CRUD", new CRUD());
 
         mainFrame.add(tabby);
         mainFrame.setVisible(true);

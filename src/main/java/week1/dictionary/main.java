@@ -5,13 +5,15 @@
 
 package week1.dictionary;
 
+import java.io.IOException;
+
 /**
  *
  * @author Admin
  */
 public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Menu menu = new Menu();
     }
 }

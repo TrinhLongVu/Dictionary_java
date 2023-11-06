@@ -9,42 +9,81 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Admin
  */
 public class SearchSlang extends JPanel {
+
     private JPanel HeaderUI;
     private JPanel Content;
-    private JTextPane text;
     private JButton buttonInput;
     private JTextField textInput;
     private JLabel label;
-    
-    SearchSlang() {
+    private JTable table;
+    private JScrollPane scrollPane;
+    private DefaultTableModel model;
+    private HashMap<String, ArrayList<String>> Dicts;
+    private ArrayList<String> ListHistory; 
+    private History PageHistory;
+
+    SearchSlang(HashMap<String, ArrayList<String>> d) throws IOException {
+        Dicts = new HashMap<>();
+        Dicts = d;
+        ListHistory = new ArrayList<>();
+        PageHistory = new History();
+        handleSearch();
         createAndShowGUI();
     }
 
     private class ButtonClickListener implements ActionListener {
+
+        @Override
         public void actionPerformed(ActionEvent e) {
+            model.setRowCount(0);
             String command = e.getActionCommand();
             if ("Input".equals(command)) {
-                String textValue = textInput.getText();
-                text.setText(textValue);
+                String key = textInput.getText();
+                if (Dicts.containsKey(key)) {
+                    model.addRow(new Object[]{key, Dicts.get(key)});
+                }
+                ListHistory.add(key);
+                PageHistory.SetText(key);
             }
         }
     }
 
-    private void createAndShowGUI() {
+    private void handleSearch() throws IOException {
+        // create table 
+        model = new DefaultTableModel();
+        table = new JTable(model);
+        scrollPane = new JScrollPane(table);
+        ArrayList<String> value = new ArrayList<>();
+
+        model.addColumn("Slang");
+        model.addColumn("defintion");
+
+        for (Map.Entry<String, ArrayList<String>> entry : Dicts.entrySet()) {
+            String key = entry.getKey();
+            value = entry.getValue();
+            model.addRow(new Object[]{key, value});
+        }
+    }
+
+    private void createAndShowGUI() throws IOException {
         HeaderUI = new JPanel();
         Content = new JPanel();
         textInput = new JTextField();
         buttonInput = new JButton("input");
-        text = new JTextPane();
         label = new JLabel("Result");
-        
+
         // set layout
         setLayout(new BorderLayout());
         HeaderUI.setLayout(new FlowLayout());
@@ -52,7 +91,7 @@ public class SearchSlang extends JPanel {
         // set Size component
         textInput.setPreferredSize(new Dimension(244, 23));
         buttonInput.setPreferredSize(new Dimension(75, 23));
-        text.setPreferredSize(new Dimension(325, 200));
+        scrollPane.setPreferredSize(new Dimension(325, 250));
 
         // add event 
         buttonInput.setActionCommand("Input");
@@ -61,11 +100,10 @@ public class SearchSlang extends JPanel {
         HeaderUI.add(textInput);
         HeaderUI.add(buttonInput);
         Content.add(label);
-        Content.add(text);
+        Content.add(scrollPane);
 
         add(HeaderUI, BorderLayout.NORTH);
-        add(Content, BorderLayout.CENTER);        
-        add(new History(), BorderLayout.SOUTH);  
-  
+        add(Content, BorderLayout.CENTER);
+        add(PageHistory, BorderLayout.SOUTH);  
     }
 }
