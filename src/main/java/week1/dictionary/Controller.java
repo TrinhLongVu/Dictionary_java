@@ -13,12 +13,12 @@ import javax.swing.*;
  *
  * @author Admin
  */
-public class Menu {
+public class Controller {
 
     private JFrame mainFrame;
     private JTabbedPane tabby;
 
-    public Menu() throws IOException {
+    public Controller() throws IOException {
         createAndShowGUI();
     }
 
@@ -28,12 +28,11 @@ public class Menu {
         mainFrame.setSize(360, 400);
         HashMap<String, ArrayList<String>> Dicts = new HashMap<>();
         Dicts = new Dictionary().getDict();
-
         tabby = new JTabbedPane();
 
         tabby.addTab("Slang", new SearchSlang(Dicts));
         tabby.addTab("definition", new DefineSearch());
-        tabby.addTab("CRUD", new CRUD());
+        tabby.addTab("CRUD", new CRUD(Dicts));
 
         mainFrame.add(tabby);
         mainFrame.setVisible(true);

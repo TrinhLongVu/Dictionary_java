@@ -4,15 +4,11 @@
  */
 package week1.dictionary;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +27,7 @@ public class SearchSlang extends JPanel {
     private JScrollPane scrollPane;
     private DefaultTableModel model;
     private HashMap<String, ArrayList<String>> Dicts;
-    private ArrayList<String> ListHistory; 
+    private ArrayList<String> ListHistory;
     private History PageHistory;
 
     SearchSlang(HashMap<String, ArrayList<String>> d) throws IOException {
@@ -52,7 +48,10 @@ public class SearchSlang extends JPanel {
             if ("Input".equals(command)) {
                 String key = textInput.getText();
                 if (Dicts.containsKey(key)) {
-                    model.addRow(new Object[]{key, Dicts.get(key)});
+                    ArrayList<String> temp = Dicts.get(key);
+                    for (int i = 0; i < temp.size(); i++) {
+                        model.addRow(new Object[]{key, temp.get(i)});
+                    }
                 }
                 ListHistory.add(key);
                 PageHistory.SetText(key);
@@ -73,7 +72,10 @@ public class SearchSlang extends JPanel {
         for (Map.Entry<String, ArrayList<String>> entry : Dicts.entrySet()) {
             String key = entry.getKey();
             value = entry.getValue();
-            model.addRow(new Object[]{key, value});
+            ArrayList<String> temp = Dicts.get(key);
+            for (int i = 0; i < temp.size(); i++) {
+                model.addRow(new Object[]{key, temp.get(i)});
+            }
         }
     }
 
@@ -104,6 +106,6 @@ public class SearchSlang extends JPanel {
 
         add(HeaderUI, BorderLayout.NORTH);
         add(Content, BorderLayout.CENTER);
-        add(PageHistory, BorderLayout.SOUTH);  
+        add(PageHistory, BorderLayout.SOUTH);
     }
 }
