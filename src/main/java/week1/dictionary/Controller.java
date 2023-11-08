@@ -36,13 +36,11 @@ public class Controller {
         
         tabby = new JTabbedPane();
         tabby.addTab("Slang", new SearchSlang(Dicts));
-        tabby.addTab("Define", new DefineSearch());
+        tabby.addTab("Define", new DefineSearch(Dicts, d.getDefine()));
         tabby.addTab("CRUD", new CRUD(Dicts, Origins));        
         tabby.addTab("Slang Day", new SlangWordDays(Dicts));        
         tabby.addTab("Random Slang", new RandomSlang(Dicts));        
         tabby.addTab("Random Define", new RandomDefinition(Dicts));
-
-
 
 
         mainFrame.add(tabby);
