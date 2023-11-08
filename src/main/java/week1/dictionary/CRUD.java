@@ -57,7 +57,7 @@ public class CRUD extends JPanel {
 
         cardPanel.add(new Add(Dicts), "Add");
         cardPanel.add(new Edit(Dicts), "Edit");
-        cardPanel.add(new Delete(), "Delete");
+        cardPanel.add(new Delete(Dicts), "Delete");
 
         list.addActionListener(new Event());
     }

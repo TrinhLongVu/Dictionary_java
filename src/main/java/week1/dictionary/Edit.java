@@ -51,6 +51,7 @@ public class Edit extends JPanel {
             if ("Edit".equals(command)) {
                 Dicts.get(Word.getText()).clear();
                 Dicts.get(Word.getText()).add(Define.getText());
+                JOptionPane.showMessageDialog(null, "Edit Success", "Message", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

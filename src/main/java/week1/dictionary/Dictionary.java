@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class Dictionary {
 
     private final HashMap<String, ArrayList<String>> _Dicts;
+
     Dictionary() {
         _Dicts = new HashMap<>();
     }
@@ -38,5 +39,10 @@ public class Dictionary {
             }
         }
         return _Dicts;
+    }
+
+    public HashMap<String, ArrayList<String>> getDictOrigin() throws FileNotFoundException, IOException {
+        HashMap<String, ArrayList<String>> copyMap = new HashMap<>(_Dicts);
+        return copyMap;
     }
 }
