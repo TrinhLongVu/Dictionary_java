@@ -26,13 +26,20 @@ public class Controller {
         mainFrame = new JFrame("CardLayoutDemo");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(360, 400);
-        HashMap<String, ArrayList<String>> Dicts = new HashMap<>();
-        Dicts = new Dictionary().getDict();
+        HashMap<String, ArrayList<String>> Dicts = new HashMap<>();        
+        HashMap<String, ArrayList<String>> Origins = new HashMap<>();
+        
+        Dictionary d = new Dictionary();
+        
+        Dicts = d.getDict();
+        Origins = d.getOrigin();
+        
         tabby = new JTabbedPane();
-
         tabby.addTab("Slang", new SearchSlang(Dicts));
-        tabby.addTab("definition", new DefineSearch());
-        tabby.addTab("CRUD", new CRUD(Dicts));
+        tabby.addTab("Definition", new DefineSearch());
+        tabby.addTab("CRUD", new CRUD(Dicts, Origins));        
+        tabby.addTab("CRUD", new SlangWordDays());
+
 
         mainFrame.add(tabby);
         mainFrame.setVisible(true);

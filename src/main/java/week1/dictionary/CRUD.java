@@ -20,9 +20,11 @@ public class CRUD extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private HashMap<String, ArrayList<String>> Dicts;
+    private HashMap<String, ArrayList<String>> Origins;
 
-    CRUD(HashMap<String, ArrayList<String>> d) {
-        Dicts = d;
+    CRUD(HashMap<String, ArrayList<String>> d, HashMap<String, ArrayList<String>> o) {
+        Dicts = d; 
+        Origins = o;
         UI();
     }
 
@@ -31,13 +33,14 @@ public class CRUD extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String selectedItem = (String) list.getSelectedItem();
-            if("Add".equals(selectedItem)){
+            if ("Add".equals(selectedItem)) {
                 cardLayout.show(cardPanel, "Add");
-            }
-            else if ("Edit".equals(selectedItem)) {
+            } else if ("Edit".equals(selectedItem)) {
                 cardLayout.show(cardPanel, "Edit");
             } else if ("Delete".equals(selectedItem)) {
                 cardLayout.show(cardPanel, "Delete");
+            } else if ("Reset".equals(selectedItem)) {
+                cardLayout.show(cardPanel, "Reset");
             }
         }
     }
@@ -58,6 +61,7 @@ public class CRUD extends JPanel {
         cardPanel.add(new Add(Dicts), "Add");
         cardPanel.add(new Edit(Dicts), "Edit");
         cardPanel.add(new Delete(Dicts), "Delete");
+        cardPanel.add(new Reset(Dicts, Origins), "Reset");
 
         list.addActionListener(new Event());
     }
