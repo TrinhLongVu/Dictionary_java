@@ -38,7 +38,9 @@ public class Controller {
         tabby.addTab("Slang", new SearchSlang(Dicts));
         tabby.addTab("Definition", new DefineSearch());
         tabby.addTab("CRUD", new CRUD(Dicts, Origins));        
-        tabby.addTab("CRUD", new SlangWordDays());
+        tabby.addTab("SlangWordsDay", new SlangWordDays());        
+        tabby.addTab("Random Slang", new RandomSlang(Dicts));
+
 
 
         mainFrame.add(tabby);
