@@ -31,7 +31,10 @@ public class CRUD extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String selectedItem = (String) list.getSelectedItem();
-            if ("Edit".equals(selectedItem)) {
+            if("Add".equals(selectedItem)){
+                cardLayout.show(cardPanel, "Add");
+            }
+            else if ("Edit".equals(selectedItem)) {
                 cardLayout.show(cardPanel, "Edit");
             } else if ("Delete".equals(selectedItem)) {
                 cardLayout.show(cardPanel, "Delete");
@@ -52,8 +55,8 @@ public class CRUD extends JPanel {
         add(list, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
 
-        cardPanel.add(new Add(Dicts), "Edit");
-        cardPanel.add(new Edit(), "Edit");
+        cardPanel.add(new Add(Dicts), "Add");
+        cardPanel.add(new Edit(Dicts), "Edit");
         cardPanel.add(new Delete(), "Delete");
 
         list.addActionListener(new Event());

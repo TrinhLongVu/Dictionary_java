@@ -5,6 +5,9 @@
 package week1.dictionary;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -13,37 +16,63 @@ import javax.swing.*;
  */
 public class Edit extends JPanel {
 
-    private JTextPane wordNeeedChange;
-    private JTextPane wordChange;
+    private HashMap<String, ArrayList<String>> Dicts;
+    private JPanel p1;
+    private JPanel p2;
 
-    Edit() {
-        UI();
+    private JLabel LabelWord;
+    private JLabel LabelDefine;
+
+    private JTextField Word;
+    private JTextField Define;
+
+    private JButton buttonEdit;
+
+    Edit(HashMap<String, ArrayList<String>> d) {
+        Dicts = d;
+        p1 = new JPanel();
+        p2 = new JPanel();
+
+        LabelWord = new JLabel("Word");
+        LabelDefine = new JLabel("New Define");
+
+        Word = new JTextField();
+        Define = new JTextField();
+
+        buttonEdit = new JButton("Edit");
+        ui();
     }
 
-    private void UI() {
-        JPanel p1 = new JPanel();
-        JPanel p2 = new JPanel();
-        JLabel l1 = new JLabel("Old Word");
-        JLabel l2 = new JLabel("New Word");
-        wordNeeedChange = new JTextPane();        
-        wordChange = new JTextPane();
+    private class ButtonClickListener implements ActionListener {
 
-        wordNeeedChange.setPreferredSize(new Dimension(150, 200));
-        wordChange.setPreferredSize(new Dimension(150, 200));
-        setLayout(new FlowLayout());
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
+            if ("Edit".equals(command)) {
+                Dicts.get(Word.getText()).clear();
+                Dicts.get(Word.getText()).add(Define.getText());
+            }
+        }
+    }
 
-        p1.setLayout(new BorderLayout());
-        p2.setLayout(new BorderLayout());
+    private void ui() {
 
-        p1.add(l1, BorderLayout.NORTH);
-        p1.add(wordNeeedChange, BorderLayout.CENTER);
-        
-        
-        p2.add(l2, BorderLayout.NORTH);
-        p2.add(wordChange, BorderLayout.CENTER);
-        
+        Word.setPreferredSize(new Dimension(170, 23));
+        Define.setPreferredSize(new Dimension(170, 23));
+        buttonEdit.setPreferredSize(new Dimension(100, 23));
+
+        p1.add(LabelWord);
+        p1.add(Word);
+
+        p2.add(LabelDefine);
+        p2.add(Define);
+
         add(p1);
         add(p2);
+        add(buttonEdit);
+
+        buttonEdit.setActionCommand("Edit");
+        buttonEdit.addActionListener(new ButtonClickListener());
 
     }
 }

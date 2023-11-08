@@ -77,15 +77,12 @@ public class Add extends JPanel {
         Define.setPreferredSize(new Dimension(170, 23));
         buttonAdd.setPreferredSize(new Dimension(100, 23));
 
-//        p1.setLayout(new GridLayout(1, 2));
-//        p2.setLayout(new GridLayout(1, 2));
         p1.add(LabelWord);
         p1.add(Word);
 
         p2.add(LabelDefine);
         p2.add(Define);
 
-//        setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
         add(p1);
         add(p2);
         add(buttonAdd);
