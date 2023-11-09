@@ -11,4 +11,5 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>week1.dictionary.Dictionary</exec.mainClass>
     </properties>
+    <name>Dictionary</name>
 </project>

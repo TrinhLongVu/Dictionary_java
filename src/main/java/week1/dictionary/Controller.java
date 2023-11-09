@@ -29,7 +29,7 @@ public class Controller {
         HashMap<String, ArrayList<String>> Dicts = new HashMap<>();        
         HashMap<String, ArrayList<String>> Origins = new HashMap<>();
         
-        Dictionary d = new Dictionary();
+        Dict d = new Dict();
         
         Dicts = d.getDict();
         Origins = d.getOrigin();
