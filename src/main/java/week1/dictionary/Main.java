@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package week1.dictionary;
+package week1.Dictionary;
 
 import java.io.IOException;
 
@@ -11,10 +11,10 @@ import java.io.IOException;
  *
  * @author Admin
  */
-public class Dictionary {
+public class Main {
     public static void main(String[] args){
         try {
-            Controller menu = new Controller();
+            new Controller();
         } catch (IOException e) {
             // Handle the IOException here (e.g., print an error message)
             e.printStackTrace();

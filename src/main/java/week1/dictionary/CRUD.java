@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package week1.dictionary;
+package week1.Dictionary;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,11 +20,9 @@ public class CRUD extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private HashMap<String, ArrayList<String>> Dicts;
-    private HashMap<String, ArrayList<String>> Origins;
 
-    CRUD(HashMap<String, ArrayList<String>> d, HashMap<String, ArrayList<String>> o) {
-        Dicts = d; 
-        Origins = o;
+    CRUD(HashMap<String, ArrayList<String>> d) {
+        Dicts = d;
         UI();
     }
 
@@ -61,7 +59,7 @@ public class CRUD extends JPanel {
         cardPanel.add(new Add(Dicts), "Add");
         cardPanel.add(new Edit(Dicts), "Edit");
         cardPanel.add(new Delete(Dicts), "Delete");
-        cardPanel.add(new Reset(Dicts, Origins), "Reset");
+        cardPanel.add(new Reset(Dicts), "Reset");
 
         list.addActionListener(new Event());
     }

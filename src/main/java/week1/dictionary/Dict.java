@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package week1.dictionary;
+package week1.Dictionary;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,8 +25,8 @@ public class Dict {
         _Define = new HashMap<>();
     }
 
-    public HashMap<String, ArrayList<String>> getDict() throws FileNotFoundException, IOException {
-        try ( BufferedReader buff = new BufferedReader(new FileReader("./Slang.txt"))) {
+    public HashMap<String, ArrayList<String>> getDict(String NameFile) throws FileNotFoundException, IOException {
+        try ( BufferedReader buff = new BufferedReader(new FileReader(NameFile))) {
             String line;
             while ((line = buff.readLine()) != null) {
                 String[] Dict = line.split("`");
@@ -52,11 +52,13 @@ public class Dict {
                     }
                 }
 
-                ArrayList<String> values = new ArrayList<>();
-                if (_Dicts.containsKey(Dict[0]) || values.isEmpty()) {
+                if (!_Dicts.containsKey(Dict[0])) {
+                    ArrayList<String> values = new ArrayList<>();
                     values.add(Dict[1]);
+                    _Dicts.put(Dict[0], values);
+                } else {
+                    _Dicts.get(Dict[0]).add(Dict[1]);
                 }
-                _Dicts.put(Dict[0], values);
             }
         }
         return _Dicts;
@@ -66,13 +68,4 @@ public class Dict {
         return _Define;
     }
 
-    public HashMap<String, ArrayList<String>> getOrigin() throws FileNotFoundException, IOException {
-        HashMap<String, ArrayList<String>> Origin = new HashMap<>();
-        for (String key : _Dicts.keySet()) {
-            ArrayList<String> originalList = _Dicts.get(key);
-            ArrayList<String> copyList = new ArrayList<>(originalList);
-            Origin.put(key, copyList);
-        }
-        return Origin;
-    }
 }
